@@ -24,9 +24,21 @@ One of the sliders I had in the program limited how many images of the larger hu
 ![TestBlock](https://github.com/EPatrick7/Eigenblock/assets/88292909/7bbfc91c-a4be-4bf8-ad0a-ae9f1e7713be)
 ![TestPhoto](https://github.com/EPatrick7/Eigenblock/assets/88292909/c1671800-1081-461c-8544-c6dd26f4466c)
 
+# Smaller Dataset
+When I lowered the amount of images in the training dataset to only 500 images (Solely of human faces) the quality of the recovered image after vectorization significantly dropped. What is interesting is how the dataset has clearly adapted better to the human face image vs the game block texture. There even seems to be a human face impressed into the noise of the game block texture.
+
+
+<img width="400" alt="EigenBlockOutput_1" src="https://github.com/EPatrick7/Eigenblock/assets/88292909/09af2dab-909d-4774-90d1-49a2009df148">
+
+<img width="400" alt="EigenBlockOutput_1" src="https://github.com/EPatrick7/Eigenblock/assets/88292909/dce10d4e-0f3b-420e-b500-aec8b10f7a58">
+
+
+
 # Note: 
 Currently this implementation only supports greyscale images and images of known square sizes.
 
 Human Datasets From:
+
 https://figshare.com/articles/dataset/Face_Research_Lab_London_Set/5047666?file=8541961
+
 https://vis-www.cs.umass.edu/lfw/
