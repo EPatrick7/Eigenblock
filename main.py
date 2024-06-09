@@ -9,7 +9,7 @@ import glob
 plt.rcParams['toolbar'] = 'None'
 global brightness_offset
 
-max_images=5000
+max_images=1000
 
 #n=250
 #texture_folder="lfw-deepfunneled"
@@ -263,7 +263,49 @@ def update_selected_block():
     
     plot_reconstructed_texture()
 
+def blend_selected_block_alt():
+    global base_block,w,w2,w_last
+    base_block=entry_block2.get()
 
+    w3=w_last
+    
+    w2=w
+    try:
+        w2=read_block()
+
+        if not w3 is None:
+            w=np.array(w3)
+        else:
+            base_block=entry_block.get()
+
+            w=read_block()
+        
+    except:
+        messagebox.showerror("Block Not Found", base_block+"."+current_format+" was not found!")
+        return
+    
+    p=min(max(0,float(blend_slider.get())/100.0),1)
+    i =0
+    for el in w2:
+        if w[i] == 0 or w2[i]==0:
+            w[i]=0
+            w2[i]=0
+        i+=1
+
+    w=p * w2 + (1 - p) * w
+
+    i=0
+    for row in w_entries:
+        j=0
+        for entry in row:
+            val=round(w[i * num_cols + j],round_num)
+
+            entry.delete(0,tk.END)
+            entry.insert(0,str(val))
+            j+=1
+        i+=1
+    
+    plot_reconstructed_texture()
 def blend_selected_block():
     global base_block,w,w2,w_last
     base_block=entry_block2.get()
@@ -332,6 +374,10 @@ blend_slider.set(0)
 blend_slider.pack(side=tk.LEFT, padx=5)
 
 load_preset_button2 = Button(root, text="Blend Presets", command=blend_selected_block)
+load_preset_button2.pack(side=tk.LEFT, padx=5)
+
+
+load_preset_button2 = Button(root, text="Blend Non 0s", command=blend_selected_block_alt)
 load_preset_button2.pack(side=tk.LEFT, padx=5)
 
 
