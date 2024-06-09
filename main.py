@@ -7,22 +7,23 @@ import os
 from math import sqrt
 import glob
 plt.rcParams['toolbar'] = 'None'
+global brightness_offset
 
 max_images=5000
 
-n=250
-texture_folder="lfw-deepfunneled"
-current_format="jpg"
-base_block="Aaron_Eckhart\Aaron_Eckhart_0001"
-base_block2="George_W_Bush\George_W_Bush_0001"
-
-
-#n=100
-#texture_folder="faces"
+#n=250
+#texture_folder="lfw-deepfunneled"
 #current_format="jpg"
-#base_block="001_03"
-#base_block2="002_03"
+#base_block="Aaron_Eckhart\Aaron_Eckhart_0001"
+#base_block2="George_W_Bush\George_W_Bush_0001"
+#brightness_offset=0
 
+n=100
+texture_folder="faces"
+current_format="jpg"
+base_block="001_03"
+base_block2="002_08"
+brightness_offset=150
 
 #n=16
 #texture_folder="textures"
@@ -30,9 +31,7 @@ base_block2="George_W_Bush\George_W_Bush_0001"
 
 #base_block="dirt"
 #base_block2="diamond_block"
-
-global brightness_offset
-brightness_offset=0
+#brightness_offset=0
 
 
 
@@ -173,7 +172,10 @@ sv=round_out(Svals)
 
 def update_brightness(event):
     global brightness_offset
-    brightness_offset=float(brightness_block.get())
+    val=brightness_block.get()
+    if val=='' or val=='-':
+        val='0'
+    brightness_offset=float(val)
 
 def update_plot(event):
     plot_reconstructed_texture()
@@ -332,7 +334,7 @@ load_preset_button2.pack(side=tk.LEFT, padx=5)
 
 
 brightness_block = Entry(root, width=20)
-brightness_block.insert(0, str(0))
+brightness_block.insert(0, str(brightness_offset))
 brightness_block.bind('<KeyRelease>', update_brightness)
 brightness_block.pack(side=tk.LEFT, padx=5)
 
