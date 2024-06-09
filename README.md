@@ -28,10 +28,15 @@ One of the sliders I had in the program limited how many images of the larger hu
 When I lowered the amount of images in the training dataset to only 500 images (Solely of human faces) the quality of the recovered image after vectorization significantly dropped. What is interesting is how the dataset has clearly adapted better to the human face image vs the game block texture. There even seems to be a human face impressed into the noise of the game block texture.
 
 
+
 <img width="400" alt="EigenBlockOutput_1" src="https://github.com/EPatrick7/Eigenblock/assets/88292909/09af2dab-909d-4774-90d1-49a2009df148">
 
 <img width="400" alt="EigenBlockOutput_1" src="https://github.com/EPatrick7/Eigenblock/assets/88292909/dce10d4e-0f3b-420e-b500-aec8b10f7a58">
 
+One other fascinating element of Eigenfaces is their ability to reconstruct human faces even when most of the values in the image vector are dropped. This image has had 950 values removed from its vector and yet is still recognizable as a human face.
+
+
+<img width="400" alt="EigenBlockOutput_1" src="https://github.com/EPatrick7/Eigenblock/assets/88292909/1b3e1153-8f2d-414b-a96b-8b580414bcd1">
 
 
 # Note: 
