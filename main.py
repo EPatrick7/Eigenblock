@@ -33,6 +33,7 @@ brightness_offset=150
 #base_block2="diamond_block"
 #brightness_offset=0
 
+round_num=0
 
 
 def output_plot(matrix):
@@ -187,7 +188,7 @@ for i in range(num_rows):
         if i*num_cols+j>=w.size:
             break
         entry = Entry(inner_frame, width=10)
-        val=round(w[i * num_cols + j],2)
+        val=round(w[i * num_cols + j],round_num)
         
        # if sv[i * num_cols + j] ==0: #If this dimension is not needed....
        #     val=0 
@@ -196,9 +197,9 @@ for i in range(num_rows):
         entry.grid(row=i, column=j, padx=5, pady=5)
         entry.bind('<KeyRelease>', update_plot)
         row_entries.append(entry)
+    w_entries.append(row_entries)
     if i*num_cols+j>=w.size:
         break
-    w_entries.append(row_entries)
     
 
 
@@ -252,7 +253,7 @@ def update_selected_block():
     for row in w_entries:
         j=0
         for entry in row:
-            val=round(w[i * num_cols + j],5)
+            val=round(w[i * num_cols + j],round_num)
 
             entry.delete(0,tk.END)
             entry.insert(0,str(val))
@@ -291,7 +292,7 @@ def blend_selected_block():
     for row in w_entries:
         j=0
         for entry in row:
-            val=round(w[i * num_cols + j],2)
+            val=round(w[i * num_cols + j],round_num)
 
             entry.delete(0,tk.END)
             entry.insert(0,str(val))
@@ -306,7 +307,7 @@ entry_min = Entry(root, width=10)
 entry_min.insert(0, str(0))
 entry_min.pack(side=tk.LEFT, padx=5)
 entry_max = Entry(root, width=10)
-entry_max.insert(0, str(255))
+entry_max.insert(0, str(w.size))
 entry_max.pack(side=tk.LEFT, padx=5)
 
 set_to_zero_button = Button(root, text="Set Range to 0", command=set_entries_to_zero)
